@@ -1,1 +1,1 @@
-gg.alert("ANTICHEAT ON!!!")
+gg.alert("ANTICHEAT ON!!!PAKE GG AIMBOT OK")
