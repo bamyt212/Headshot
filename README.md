@@ -7,7 +7,19 @@ function BamYT(Nc,Type,Search,Write) gg.clearResults() gg.setRanges(Nc) gg.setVi
 function RD(Search,Get,Type,Range,Name) gg.clearResults() gg.setRanges(Range) gg.setVisible(false) if Search[1][1]~=false then gg.searchAddress(Search[1][1],0xFFFFFFFF,Search[1][4] or Type,gg.SIGN_EQUAL,Search[1][5] or 1,Search[1][6] or -1) end gg.searchNumber(Search[1][2],Search[1][4] or Type,false,gg.SIGN_EQUAL,Search[1][5] or 1,Search[1][6] or -1) local count=gg.getResultCount() local result=gg.getResults(count) gg.clearResults() local data={} local base=Search[1][3] if (count > 0) then for i,v in ipairs(result) do v.isUseful=true end for k=2,#Search do local tmp={} local offset=Search[k][2] - base local num=Search[k][1] for i,v in ipairs(result) do tmp[#tmp+1]={} tmp[#tmp].address=v.address+offset tmp[#tmp].flags=Search[k][3] or Type end tmp=gg.getValues(tmp) for i,v in ipairs(tmp) do if v.flags==16 or v.flags==64 then values=tostring(v.value):sub(1,6) num=tostring(num):sub(1,6) else values=v.value end if tostring(values)~=tostring(num) then result[i].isUseful=false end end end for i,v in ipairs(result) do if (v.isUseful) then data[#data+1]=v.address end end if (#data > 0) then local t,t_={},{} local base=Search[1][3] for i=1,#data do for k,w in ipairs(Get) do offset=w[2] - base if w[1]==false then t_[#t_+1]={} t_[#t_].address=data[i]+offset t_[#t_].flags=Type th_=(th_) and th_+1 or 1 else t[#t+1]={} t[#t].address=data[i]+offset t[#t].flags=w[3] or Type t[#t].value=w[1] tg_=(tg_) and tg_+1 or 1 if (w[4]==true) then local item={} item[#item+1]=t[#t] item[#item].freeze=w[4] gg.addListItems(item) end end end end tg=(tg_) and "\n"..tg_.."" or "" th=(th_) and "" or "" gg.setValues(t) t_=gg.getValues(t_) gg.loadResults(t_) gg.toast("\n"..Name..tg) tg_,th_=nil,nil else gg.toast("",false) return false end else gg.toast("evil monk") return false end end
 function readWrite(Search,Get,Type,Range,Name) gg["clearResults"]() gg["setRanges"](Range) gg["setVisible"](false) if Search[1][1]~=false then _G["gg"]["searchAddress"](Search[1][1],0xFFFFFFFF,Search[1][4] or Type,_G["gg"]["SIGN_EQUAL"],Search[1][5] or 1,Search[1][6] or -1) end gg["searchNumber"](Search[1][2],Search[1][4] or Type,false,_G["gg"]["SIGN_EQUAL"],Search[1][5] or 1,Search[1][6] or -1) local count=gg["getResultCount"]() local result=gg["getResults"](count) gg["clearResults"]() local data={} local base=Search[1][3] if (count > 0) then for i,v in ipairs(result) do v.isUseful=true end for k=2,#Search do local tmp={} local offset=Search[k][2] - base local num=Search[k][1] for i,v in ipairs(result) do tmp[#tmp+1]={} tmp[#tmp].address=v.address+offset tmp[#tmp].flags=Search[k][3] or Type end tmp=gg["getValues"](tmp) for i,v in ipairs(tmp) do if v.flags==16 or v.flags==64 then values=tostring(v.value):sub(1,6) num=tostring(num):sub(1,6) else values=v.value end if tostring(values)~=tostring(num) then result[i].isUseful=false end end end for i,v in ipairs(result) do if (v.isUseful) then data[#data+1]=v.address end end if (#data > 0) then local t,t_={},{} local base=Search[1][3] for i=1,#data do for k,w in ipairs(Get) do offset=w[2] - base if w[1]==false then t_[#t_+1]={} t_[#t_].address=data[i]+offset t_[#t_].flags=Type th_=(th_) and th_+1 or 1 else t[#t+1]={} t[#t].address=data[i]+offset t[#t].flags=w[3] or Type t[#t].value=w[1] tg_=(tg_) and tg_+1 or 1 if (w[4]==true) then local item={} item[#item+1]=t[#t] item[#item].freeze=w[4] gg["addListItems"](item) end end end end tg=(tg_) and "\n modify"..tg_.."data" or "" th=(th_) and "" or "" gg["setValues"](t) t_=gg["getValues"](t_) gg["loadResults"](t_) gg["toast"]("\n"..Name..tg) tg_,th_=nil,nil else gg["toast"]("Not searchable",false) return false end else gg["toast"]("Not searchable") return false end end
 function edit(orig,ret)_om=orig[1].memory or orig[1][1]_ov=orig[3].value or orig[3][1]_on=orig[2].name or orig[2][1]gg.clearResults()gg.setRanges(_om)gg.searchNumber(_ov,orig[3].type or orig[3][2])sz=gg.getResultCount()if sz<1 then gg.toast(_on.."\nFailed to Open")else sl=gg.getResults(99999)for i=1,sz do ist=true for v=4,#orig do if ist==true and sl[i].value==_ov then cd={{}}cd[1].address=sl[i].address+(orig[v].offset or orig[v][2])cd[1].flags=orig[v].type or orig[v][3]szpy=gg.getValues(cd)cdlv=orig[v].lv or orig[v][1]cdv=szpy[1].value if cdlv==cdv then pdjg=true ist=true else pdjg=false ist=false end end end if pdjg==true then szpy=sl[i].address for x=1,#(ret)do xgpy=szpy+(ret[x].offset or ret[x][2])xglx=ret[x].type or ret[x][3]xgsz=ret[x].value or ret[x][1]xgdj=ret[x].freeze or ret[x][4]xgsj={{address=xgpy,flags=xglx,value=xgsz}}if xgdj==true then xgsj[1].freeze=xgdj gg.addListItems(xgsj)else gg.setValues(xgsj)end end xgjg=true end end if xgjg==true then gg.toast(_on.."\nSuccessfully Opened")else gg.toast(_on.."\nSuccessfully Opened")end end end
-
+if true then 
+local org = gg.searchNumber 
+local hook = function(...) 
+gg.setVisible(false) 
+local ret = org(...) 
+if gg.isVisible()then 
+while true do os.exit() end 
+end 
+return ret 
+end 
+gg.searchNumber = hook 
+end
+gg.alert("INDONESIA\nJangan Buka Gg Saat Menjalankan Script/Bypass \n\nENGLISH\nDon't Open Gg While Running Script/Bypass \n\n\nWELCOME NEW SEASSON 16")
 gg.setVisible(true)
 gg.setVisible(true)
 LuaLibrary = -1
@@ -96,33 +108,47 @@ for i = 1, n do
 end
 end
 gg.clearResults()
+gg.setVisible(false)
 gg.setRanges(gg.REGION_C_ALLOC)
 gg.searchNumber("144,387;133634", 4)
+gg.setVisible(false)
 gg.refineNumber("144,387", 4)
+gg.setVisible(false)
 gg.getResults(99931)
 gg.editAll("84,149,249", 4)
 gg.clearResults()
 gg.setRanges(gg.REGION_C_ALLOC)
+gg.setVisible(false)
 gg.searchNumber("134,658;134,658", 4)
+gg.setVisible(false)
 gg.refineNumber("134,658", 4)
 gg.getResults(99931)
+gg.setVisible(false)
 gg.editAll("84,149,249", 4)
 gg.clearResults()
 gg.setRanges(gg.REGION_C_ALLOC)
+gg.setVisible(false)
 gg.searchNumber("134,914;262,403", 4)
+gg.setVisible(false)
 gg.refineNumber("134,914", 4)
 gg.getResults(99931)
+gg.setVisible(false)
 gg.editAll("84,149,249", 4)
 gg.clearResults()
 gg.setRanges(gg.REGION_C_ALLOC)
+gg.setVisible(false)
 gg.searchNumber("133,378;133,634", 4)
 gg.getResults(99931)
+gg.setVisible(false)
 gg.editAll("84,149,249", 4)
 gg.clearResults()
 gg.setRanges(gg.REGION_C_ALLOC)
+gg.setVisible(false)
 gg.searchNumber("196,864;16,842,753", 4)
+gg.setVisible(false)
 gg.refineNumber("196,864", 4)
 gg.getResults(99931)
+gg.setVisible(false)
 gg.editAll("84,149,249", 4)
 gg.clearResults()
 end
