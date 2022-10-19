@@ -29,15 +29,9 @@ MENU = gg.multiChoice({
         "Less Recoill",
         "Small Croshair",
         "Aimbot",
-        "No Shake",
+        "Auto Headshot",
         "Ipad View",
         "Night Mode",
-        "Auto Headshot",
-        "Wallhack",
-        "Long Hand",
-        "Blue Fog",
-        "Speed Run",
-        "Hit Effect",
         "No Fog",
         "EXIT" 
   }, nil, "64 BIT ONLY ") if MENU == nil then
@@ -66,25 +60,7 @@ MENU = gg.multiChoice({
    if MENU[8] == true then 
       BAM8()
      end
-  if MENU[9] == true then 
-      BAM9()
-     end
-if MENU[10] == true then 
-      BAM10()
-     end
-if MENU[11] == true then 
-      BAM11()
-     end
-if MENU[12] == true then 
-      BAM12()
-     end
-if MENU[13] == true then 
-      BAM13()
-     end
-if MENU[14] == true then 
-      BAM14()
-     end
-   if MENU[15] == true then
+   if MENU[9] == true then
       LOBBY()
      end
    end
@@ -167,6 +143,9 @@ end
 
 function BAM4() 
 so=gg.getRangesList('libUE4.so')[1].start
+py=0x2670848
+setvalue(so+py,16,8.476953379792e-21)
+so=gg.getRangesList('libUE4.so')[1].start
 py=0x2670844 
 setvalue(so+py,4,505421832)--aimbot
 so=gg.getRangesList('libUE4.so')[1].start
@@ -184,9 +163,16 @@ setvalue(so+py,4,505421832 )
 end
 
 function BAM5() 
-so=gg.getRangesList('libUE4.so')[1].start
-py=0x1F6CEA4 
-setvalue(so+py,4,335544357)--noshake
+gg.clearResults()
+gg.setRanges(gg.REGION_ANONYMOUS)
+gg.setVisible(false)
+gg.searchNumber("25;30.5", gg.TYPE_FLOAT, false, gg.SIGN_EQUAL, 0, -1)
+gg.setVisible(false)
+gg.refineNumber("25;30.5", gg.TYPE_FLOAT, false, gg.SIGN_EQUAL, 0, -1)
+gg.getResults(10)
+gg.setVisible(false)
+gg.editAll("500", gg.TYPE_FLOAT)
+gg.clearResults()
 end
 
 function BAM6() 
@@ -202,68 +188,6 @@ setvalue(so+py,16,8.47695338e-21 )--night mode
 end
 
 function BAM8() 
-gg.clearResults()
-gg.setRanges(gg.REGION_ANONYMOUS)
-gg.setVisible(false)
-gg.searchNumber("25;30.5", gg.TYPE_FLOAT, false, gg.SIGN_EQUAL, 0, -1)
-gg.setVisible(false)
-gg.refineNumber("25;30.5", gg.TYPE_FLOAT, false, gg.SIGN_EQUAL, 0, -1)
-gg.getResults(10)
-gg.setVisible(false)
-gg.editAll("500", gg.TYPE_FLOAT)
-gg.clearResults()
-end
-
-function BAM9() 
-qmnb = { {["memory"] = 131072 | 1048576}, {["name"] = ""}, {["value"] = 5.07286419e21, ["type"] = 16}, {["lv"] = 2.0, ["offset"] = 4, ["type"] = 16}, } qmxg = { {["value"] = 120, ["offset"] = 4, ["type"] = 16}, } xqmnb(qmnb) qmnb = { {["memory"] = 131072 | 1048576}, {["name"] = ""}, {["value"] = 1.12049912e-19, ["type"] = 16}, {["lv"] = 2.0, ["offset"] = 84, ["type"] = 16}, } qmxg = { {["value"] = 120, ["offset"] = 84, ["type"] = 16}, } xqmnb(qmnb) gg.setRanges(gg.REGION_VIDEO | gg.REGION_BAD) gg.searchNumber("1194347300;8200;1194380080:9", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1, 0) gg.refineNumber("8200", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1, 0) revert = gg.getResults(1000, nil, nil, nil, nil, nil, nil, nil, nil) gg.editAll("56", gg.TYPE_DWORD) gg.clearResults() gg.processResume() gg.searchNumber("8196;8200;2424844:17", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1, 0) gg.refineNumber("8200", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1, 0) revert = gg.getResults(1000, nil, nil, nil, nil, nil, nil, nil, nil) gg.editAll("6", gg.TYPE_DWORD) gg.clearResults()
-gg.clearResults()
-gg.setRanges(gg.REGION_VIDEO)
-gg.searchNumber("8196;8200", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1, 0)
-gg.refineNumber("8200", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1, 0)
-gg.getResults(8000)
-gg.editAll("6", gg.TYPE_DWORD)
-gg.clearResults()
-end
-
-function BAM10() 
-gg.clearResults()
-gg.setRanges(gg.REGION_ANONYMOUS)
-gg.searchNumber("4138667321167981973", gg.TYPE_QWORD, false, gg.SIGN_EQUAL, 0, -1)
-gg.refineNumber("4138667321167981973", gg.TYPE_QWORD, false, gg.SIGN_EQUAL, 0, -1)
-gg.refineNumber("4138667321167981973", gg.TYPE_QWORD, false, gg.SIGN_EQUAL, 0, -1)
-gg.getResults(1401)
-gg.editAll("4848124999984742400", gg.TYPE_QWORD)
-gg.clearResults()
-end
-
-function BAM11() 
-so=gg.getRangesList('libUE4.so')[1].start
-py=0X2E104E4 
-setvalue(so+py,16, 8.58458379e-21 )--blue fog
-end
-
-function BAM12() 
-gg.clearResults()
-gg.setRanges(gg.REGION_ANONYMOUS)
-gg.searchNumber("1;1;1;0.0001;20;0.0005;0.4::50",gg.TYPE_FLOAT,false,gg.SIGN_FUZZY_EQUAL,0,-1)
-gg.searchNumber("1",gg.TYPE_FLOAT,false,gg.SIGN_FUZZY_EQUAL,0,-1)
-gg.getResults(300)
-gg.editAll("1.06", gg.TYPE_FLOAT)
-gg.clearResults()
-end
-
-function BAM13() 
-Name = ""
-local Nc = 32
-local Lx = 16
-local Sz1 = {{10.0, 0},{46.0, 4}}
-local Sz2 = {{150, 0}}
-BamYT(Nc, Lx, Sz1, Sz2)
-gg.clearResults()
-end
-
-
-function BAM14() 
 so=gg.getRangesList('libUE4.so')[1].start
 py=0x2E2ABC4 
 setvalue(so+py,4,706675684)--No Fog
